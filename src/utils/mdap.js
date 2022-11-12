@@ -3,7 +3,8 @@ import APIPlugin from '@mdap/sdk-plugin-api';
 import ResourcePlugin from '@mdap/sdk-plugin-resource';
 import PagePerfPlugin from '@mdap/sdk-plugin-performance';
 import ExceptionPlugin from '@mdap/sdk-plugin-exception';
-console.log('VERSION---', process.env.VERSION)
+console.log('version', process.env.VERSION);
+console.log('COMMITHASH', process.env.COMMITHASH);
 const mdapSdk = new MdapSdk({
   // mdap 应用id application id
   app_name: 'pc-web',
@@ -20,7 +21,7 @@ const mdapSdk = new MdapSdk({
   // 是否开启调试日志/Toggle of debug logger | default - false
   logger: false,
   // 业务应用版本 business application version
-  app_version: `1.0.0`,
+  app_version: process.env.VERSION,
   // sampling rate 采样率 - default 0.1 | 采样结果会在下一次启动时(刷新或新开tab)生效 Sampling result will be effective at next startup (refresh page OR open a new tab)
   sample: 1,
   user_id: '12345',

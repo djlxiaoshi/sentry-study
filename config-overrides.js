@@ -3,6 +3,7 @@ const webpack = require("webpack");
 const SourceMapPlugin = require("@mdap/source-map-webpack-plugin");
 const { GitRevisionPlugin } = require("git-revision-webpack-plugin");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const gitRevisionPlugin = new GitRevisionPlugin();
 module.exports = override([
   addWebpackPlugin(
@@ -11,20 +12,23 @@ module.exports = override([
       secret:
         "daab032acfb3522e391957c076f9bacb14a00dd4c7474ed5aad7cdc8dc51a610",
       env: "production",
-      appVersion: "[git-revision-hash]",
+      appVersion: `${gitRevisionPlugin.version()}`,
       forceLog: true,
     })
   ),
   addWebpackPlugin(gitRevisionPlugin),
   addWebpackPlugin(
     new webpack.DefinePlugin({
-      VERSION: JSON.stringify(gitRevisionPlugin.version()),
-      COMMITHASH: JSON.stringify(gitRevisionPlugin.commithash()),
-      BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
-      LASTCOMMITDATETIME: JSON.stringify(
+      'process.env.VERSION': JSON.stringify(gitRevisionPlugin.version()),
+      'process.env.COMMITHASH': JSON.stringify(gitRevisionPlugin.commithash()),
+      'process.env.BRANCH': JSON.stringify(gitRevisionPlugin.branch()),
+      'process.env.LASTCOMMITDATETIME': JSON.stringify(
         gitRevisionPlugin.lastcommitdatetime()
       ),
     })
+  ),
+  addWebpackPlugin(
+    new BundleAnalyzerPlugin()
   ),
 ]);
 // module.exports = override(

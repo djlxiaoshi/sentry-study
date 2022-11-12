@@ -8,6 +8,7 @@
     "@mdap/sdk-plugin-exception": "0.0.12",
     "@mdap/sdk-plugin-performance": "^0.2.8",
     "@mdap/sdk-plugin-resource": "^0.4.8",
+    "@merchant/monitor-sdk": "^1.0.7",
     "@sentry/browser": "^6.17.0",
     "@sentry/react": "^6.17.0",
     "@sentry/tracing": "^6.17.0",
@@ -51,6 +52,7 @@
     "@sentry/webpack-plugin": "^1.18.4",
     "customize-cra": "^1.0.0",
     "git-revision-webpack-plugin": "^5.0.0",
-    "react-app-rewired": "^2.1.11"
+    "react-app-rewired": "^2.1.11",
+    "webpack-bundle-analyzer": "^4.6.1"
   }
 }

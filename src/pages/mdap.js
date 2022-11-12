@@ -13,7 +13,7 @@ function MdapPage() {
   const [showImage, setShowImage] = useState(false);
 
   const throwError = () => {
-    console.log(window.a.b);
+    console.log(window.a.c);
   };
   const exceptionHandle = () => {
     exceptionPlugin.capture({
